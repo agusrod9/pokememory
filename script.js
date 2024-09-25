@@ -81,7 +81,7 @@ const getAllPokemons = async()=>{
     
             }
         }
-        urls.splice(8,urls.length)
+        urls.splice(16,urls.length)
     } catch(error){
         console.log(error.message)
     } 
