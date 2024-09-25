@@ -147,7 +147,9 @@ const disableCardPair =(cardPair)=>{
 }
 
 const setUrlsToPlay =()=>{
-    urlsToPlay = [...urls, ...urls];
+    for(let i=0; i<urls.length; i++){
+        urlsToPlay.push(urls[i], urls[i]);
+    }
     urlsToPlay = shuffle(urlsToPlay);
 }
 
