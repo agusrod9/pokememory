@@ -64,7 +64,7 @@ const getAllPokemons = async()=>{
     
         const data = await res.json();
         
-        for(let i=0; i<16; i++){ //cargo 16 para tener más, ya que me quedo con 8 nomás y no deben ser null
+        for(let i=0; i<32; i++){ //cargo 16 para tener más, ya que me quedo con 8 nomás y no deben ser null
             let random = Math.floor(Math.random()*500);
             try{
                 const res2 = await fetch(data.results[random].url)
@@ -81,12 +81,11 @@ const getAllPokemons = async()=>{
     
             }
         }
-        
+        urls.splice(8,urls.length)
     } catch(error){
         console.log(error.message)
     } 
 
-    urls.splice(8,urls.length)
 }
 
 const flipCard=(i)=>{
