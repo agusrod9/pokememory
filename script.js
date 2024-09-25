@@ -164,5 +164,3 @@ const renderImages=()=>{
 }
 
 getAllPokemons().then(setTimeout(()=>{setUrlsToPlay();renderImages()},1000))
-
-//renderImages()
