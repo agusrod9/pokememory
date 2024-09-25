@@ -4,6 +4,7 @@ var matches = 0;
 var tries =  0;
 var cardPair = [];
 const urls = [];
+var urlsToPlay = [];
 const winnerOverlay = document.querySelector(".winner__overlay");
 const efectividad = document.getElementById("efectividad");
 
@@ -38,9 +39,16 @@ winnerOverlay.addEventListener("click", ()=>{
 })
 
 const shuffle =(array)=>{
-    for(let i= array.length -1; i>0; i--){
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+    let currentIndex = array.length;
+
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+        // Pick a remaining element...
+        let randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+    // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
     return array;
 }
@@ -139,13 +147,13 @@ const disableCardPair =(cardPair)=>{
     }
 }
 
-const renderImages=()=>{
-    let urlsToPlay = [...urls, ...urls];
+const setUrlsToPlay =()=>{
+    urlsToPlay = [...urls, ...urls];
     urlsToPlay = shuffle(urlsToPlay);
-    while(urlsToPlay.length>16){
-        getAllPokemons().then(setTimeout(()=>{renderImages()},1000))
-        console.log("vuelve a buscar en la api");
-    }
+}
+
+const renderImages=()=>{
+    
     for(let i=1; i<urlsToPlay.length+1;i++){
         let divContainer = document.getElementById(`card__character-side${i}`);
         let newCharacterImg = document.createElement("img");
@@ -157,6 +165,6 @@ const renderImages=()=>{
     }
 }
 
-getAllPokemons().then(setTimeout(()=>{renderImages()},1000))
+getAllPokemons().then(setTimeout(()=>{setUrlsToPlay();renderImages()},1000))
 
 //renderImages()
