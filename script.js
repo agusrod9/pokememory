@@ -75,7 +75,7 @@ const getAllPokemons = async()=>{
     
                 const data2 = await res2.json();
                 if(data2.sprites.other.dream_world.front_default!=null && !urls.includes(data2.sprites.other.dream_world.front_default)){
-                    urls.push(data2.sprites.other.dream_world.front_default)
+                    urls.push(data2.sprites.other.dream_world.front_default, data2.sprites.other.dream_world.front_default)
                 }
             }catch{
     
@@ -147,10 +147,7 @@ const disableCardPair =(cardPair)=>{
 }
 
 const setUrlsToPlay =()=>{
-    for(let i=0; i<urls.length; i++){
-        urlsToPlay.push(urls[i], urls[i]);
-    }
-    urlsToPlay = shuffle(urlsToPlay);
+    urlsToPlay = shuffle(urls);
 }
 
 const renderImages=()=>{
