@@ -3,7 +3,7 @@ var flipCounter = 0;
 var matches = 0;
 var tries =  0;
 var cardPair = [];
-const urls = [];
+var urls = [];
 var urlsToPlay = [];
 const winnerOverlay = document.querySelector(".winner__overlay");
 const efectividad = document.getElementById("efectividad");
@@ -63,8 +63,8 @@ const getAllPokemons = async()=>{
     
         const data = await res.json();
         
-        for(let i=0; i<32; i++){ //cargo 32 para tener más, ya que me quedo con 8 nomás y no deben ser null
-            let random = Math.floor(Math.random()*500);
+        for(let i=0; i<32; i++){ //cargo 32 para tener más, ya que me quedo con 8 (16 en realidad) nomás y no deben ser null
+            let random = Math.floor(Math.random()*1302);
             try{
                 const res2 = await fetch(data.results[random].url)
     
@@ -81,7 +81,7 @@ const getAllPokemons = async()=>{
     
             }
         }
-        urls.splice(16,urls.length)
+        urls = urls.splice(0,16)
     } catch(error){
         console.log(error.message)
     } 
