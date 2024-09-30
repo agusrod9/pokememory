@@ -75,13 +75,12 @@ const getAllPokemons = async()=>{
                 const data2 = await res2.json();
                 if(data2.sprites.other.dream_world.front_default!=null && !urls.includes(data2.sprites.other.dream_world.front_default)){
                     urls.push(data2.sprites.other.dream_world.front_default);
-                    urls.push(data2.sprites.other.dream_world.front_default);
                 }
             }catch{
     
             }
         }
-        urls = urls.splice(0,16)
+        urls = urls.splice(0,8)
     } catch(error){
         console.log(error.message)
     } 
@@ -147,7 +146,9 @@ const disableCardPair =(cardPair)=>{
 }
 
 const setUrlsToPlay =()=>{
-    urlsToPlay = shuffle(urls);
+    let doubledUrls = [...urls, ...urls]
+    console.log(doubledUrls)
+    urlsToPlay = shuffle(doubledUrls);
 }
 
 const renderImages=()=>{
