@@ -56,28 +56,29 @@ const getAllPokemons = async()=>{
     
         const data = await res.json();
         
-        for(let i=0; i<32; i++){ //cargo 32 para tener más, ya que me quedo con 8 (16 en realidad) nomás y no deben ser null
+        for(let i=0; i<64; i++){ //cargo 64 para tener más, ya que me quedo con 8 (16 en realidad) nomás y no deben ser null
             let random = Math.floor(Math.random()*1302);
             try{
                 const res2 = await fetch(data.results[random].url)
     
                 if(!res2.ok){
                     throw new Error(res2.status);
-                }
+                }else{
     
                 const data2 = await res2.json();
                 if(data2.sprites.other.dream_world.front_default!=null && !urls.includes(data2.sprites.other.dream_world.front_default)){
                     urls.push(data2.sprites.other.dream_world.front_default);
                 }
+                }
             }catch{
     
             }
         }
-        urls = urls.splice(0,8)
+        
     } catch(error){
         console.log(error.message)
     } 
-
+    urls = urls.slice(0,8)
 }
 
 const flipCard=(i)=>{
@@ -138,9 +139,10 @@ const disableCardPair =(cardPair)=>{
     }
 }
 
+
+
 const setUrlsToPlay =()=>{
-    let doubledUrls = [...urls, ...urls]
-    console.log(doubledUrls)
+    doubledUrls = [...urls, ...urls]
     urlsToPlay = shuffle(doubledUrls);
 }
 
@@ -157,4 +159,5 @@ const renderImages=()=>{
     }
 }
 
-getAllPokemons().then(setTimeout(()=>{setUrlsToPlay();renderImages()},1000))
+getAllPokemons().then(setTimeout(()=>{setUrlsToPlay();renderImages()},1500))
+
