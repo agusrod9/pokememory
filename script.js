@@ -4,6 +4,7 @@ var matches = 0;
 var tries =  0;
 var cardPair = [];
 var urls = [];
+const urlsFetch = [];
 var urlsToPlay = [];
 const winnerOverlay = document.querySelector(".winner__overlay");
 const efectividad = document.getElementById("efectividad");
@@ -56,18 +57,18 @@ const getAllPokemons = async()=>{
     
         const data = await res.json();
         
+        
         for(let i=0; i<64; i++){ //cargo 64 para tener más, ya que me quedo con 8 (16 en realidad) nomás y no deben ser null
             let random = Math.floor(Math.random()*1302);
             try{
                 const res2 = await fetch(data.results[random].url)
-    
                 if(!res2.ok){
                     throw new Error(res2.status);
                 }else{
     
                 const data2 = await res2.json();
                 if(data2.sprites.other.dream_world.front_default!=null && !urls.includes(data2.sprites.other.dream_world.front_default)){
-                    urls.push(data2.sprites.other.dream_world.front_default);
+                    urlsFetch.push(data2.sprites.other.dream_world.front_default);
                 }
                 }
             }catch{
@@ -78,7 +79,7 @@ const getAllPokemons = async()=>{
     } catch(error){
         console.log(error.message)
     } 
-    urls = urls.slice(0,8)
+    urls = urlsFetch.slice(0,8);
 }
 
 const flipCard=(i)=>{
