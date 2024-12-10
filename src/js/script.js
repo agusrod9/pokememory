@@ -42,8 +42,8 @@ const shuffle =(array)=>{
     for (let i = array.length - 1; i > 0; i--) { 
         const j = Math.floor(Math.random() * (i + 1)); 
         [array[i], array[j]] = [array[j], array[i]]; 
-      } 
-      return array; 
+    } 
+    return array; 
 }
 
 const getAllPokemons = async()=>{
@@ -154,7 +154,7 @@ const renderImages=()=>{
         let newCharacterImg = document.createElement("img");
         newCharacterImg.setAttribute("src", `${urlsToPlay[i-1]}`);
         let newBackImg = document.createElement("img");
-        newBackImg.setAttribute("src", "card-back-charSide.jpg")
+        newBackImg.setAttribute("src", "../../public/images/card-back-charSide.jpg")
         divContainer.appendChild(newBackImg);
         divContainer.appendChild(newCharacterImg);
     }
