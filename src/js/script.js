@@ -140,7 +140,7 @@ const renderImages=()=>{
         let newCharacterImg = document.createElement("img");
         newCharacterImg.setAttribute("src", `${urlsToPlay[i-1]}`);
         let newBackImg = document.createElement("img");
-        newBackImg.setAttribute("src", "../../public/images/card-back-charSide.jpg")
+        newBackImg.setAttribute("src", "../../public/images/cardBackCharacter.jpg")
         divContainer.appendChild(newBackImg);
         divContainer.appendChild(newCharacterImg);
     }
